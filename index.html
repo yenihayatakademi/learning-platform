@@ -120,6 +120,7 @@
         <div>
             <a onclick="showPage('login')">Giriş Yap</a>
             <a onclick="showPage('register')">Kayıt Ol</a>
+            <a onclick="showPage('account')">Hesabım</a>
             <button class="logout-btn" onclick="handleLogout()">Çıkış Yap</button>
         </div>
     </nav>
@@ -150,6 +151,14 @@
             <h2>Hoş geldin, <span id="user-name"></span>!</h2>
             <p>Buradan ilerlemeni takip edebilir, derslere ulaşabilirsin.</p>
         </section>
+        <section id="account" class="page">
+    <h2>Hesabım</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li><a onclick="alert('İsim değiştirme özelliği yakında eklenecek.')">İsim Değiştir</a></li>
+        <li><a onclick="alert('Şifre değiştirme özelliği yakında eklenecek.')">Şifre Değiştir</a></li>
+        <li><a onclick="alert('İlerleme sayfası yakında eklenecek.')">İlerleme</a></li>
+    </ul>
+</section>
         <section id="test" class="page">
             <h2>Seviye Testi</h2>
             <form id="levelTestForm" onsubmit="evaluateTest(event)">
