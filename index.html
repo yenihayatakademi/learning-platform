@@ -66,7 +66,8 @@
         function updateDashboard() {
             const user = auth.currentUser;
             if (user) {
-                document.getElementById('user-name').innerText = user.displayName || user.email;
+                const name = user.displayName;
+                document.getElementById('user-name').innerText = name && name.trim().length > 0 ? name : 'Kullanıcı';
             }
         }
 
@@ -146,7 +147,7 @@
             </form>
         </section>
         <section id="dashboard" class="page">
-            <h2>Hoşgeldin, <span id="register-name"></span>!</h2>
+            <h2>Hoş geldin, <span id="user-name"></span>!</h2>
             <p>Buradan ilerlemeni takip edebilir, derslere ulaşabilirsin.</p>
         </section>
         <section id="test" class="page">
