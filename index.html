@@ -6,7 +6,7 @@
     <title>İngilizce Öğrenme Platformu</title>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBBjb6HPt-LhEmZxvF7CuL4607RrkRXy4g",
@@ -23,10 +23,21 @@
 
         window.handleRegister = (e) => {
             e.preventDefault();
+            const fullName = document.getElementById('register-name').value;
             const email = document.getElementById('register-email').value;
             const password = document.getElementById('register-password').value;
+
             createUserWithEmailAndPassword(auth, email, password)
-                .then(() => alert('Kayıt başarılı!'))
+                .then((userCredential) => {
+                    return updateProfile(userCredential.user, {
+                        displayName: fullName
+                    });
+                })
+                .then(() => {
+                    alert('Kayıt başarılı!');
+                    showPage('dashboard');
+                    updateDashboard();
+                })
                 .catch(error => alert('Hata: ' + error.message));
         };
 
@@ -35,15 +46,38 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             signInWithEmailAndPassword(auth, email, password)
-                .then(() => alert('Giriş başarılı!'))
+                .then(() => {
+                    alert('Giriş başarılı!');
+                    showPage('dashboard');
+                    updateDashboard();
+                })
                 .catch(error => alert('Hata: ' + error.message));
         };
 
         window.handleLogout = () => {
             signOut(auth)
-                .then(() => alert('Çıkış yapıldı.'))
+                .then(() => {
+                    alert('Çıkış yapıldı.');
+                    showPage('home');
+                })
                 .catch(error => alert('Hata: ' + error.message));
         };
+
+        function updateDashboard() {
+            const user = auth.currentUser;
+            if (user) {
+                document.getElementById('user-name').innerText = user.displayName || user.email;
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                showPage('dashboard');
+                updateDashboard();
+            } else {
+                showPage('home');
+            }
+        });
     </script>
     <style>
         :root {
@@ -52,13 +86,7 @@
         }
         body { margin: 0; font-family: Arial, sans-serif; background-color: var(--beige); color: #333; }
         header { background-color: var(--bordeaux); color: white; padding: 0; text-align: center; }
-        header img.banner {
-    width: 50%;
-    max-height: 75px;  /* smaller height */
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-}
+        header img.banner { width: 100%; max-height: 150px; object-fit: contain; display: block; margin: 0 auto; }
         nav { background-color: #eee; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
         nav a { color: var(--bordeaux); text-decoration: none; margin: 0 10px; font-weight: bold; cursor: pointer; }
         .logout-btn { background-color: var(--bordeaux); color: white; padding: 8px 16px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
@@ -111,11 +139,15 @@
         <section id="register" class="page">
             <h2>Kayıt Ol</h2>
             <form onsubmit="handleRegister(event)">
-                <input type="text" placeholder="Ad Soyad" required>
+                <input id="register-name" type="text" placeholder="Ad Soyad" required>
                 <input id="register-email" type="email" placeholder="E-posta" required>
                 <input id="register-password" type="password" placeholder="Şifre" required>
                 <button class="btn" type="submit">Kayıt Ol</button>
             </form>
+        </section>
+        <section id="dashboard" class="page">
+            <h2>Hoşgeldin, <span id="user-name"></span>!</h2>
+            <p>Buradan ilerlemeni takip edebilir, derslere ulaşabilirsin.</p>
         </section>
         <section id="test" class="page">
             <h2>Seviye Testi</h2>
