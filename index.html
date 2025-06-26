@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İngilizce Öğrenme Platformu</title>
+  <style>
+    :root {
+      --beige: #f5f5dc;
+      --bordeaux: #800020;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--beige);
+      color: #333;
+    }
+    header {
+      background-color: var(--bordeaux);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #eee;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    nav a {
+      color: var(--bordeaux);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+    .btn {
+      background-color: var(--bordeaux);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover {
+      background-color: #a83240;
+    }
+    footer {
+      background-color: var(--bordeaux);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+    }
+    section.page {
+      display: none;
+    }
+    section.page.active {
+      display: block;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .question p {
+      font-weight: bold;
+    }
+    .question label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>İngilizce Öğrenme Platformu</h1>
+    <p>Türk öğrenciler için seviye testi, gramer ve takip sistemi</p>
+  </header>
+
+  <nav>
+    <div>
+      <a onclick="showPage('home')">Ana Sayfa</a>
+      <a onclick="showPage('about')">Hakkımızda</a>
+      <a onclick="showPage('lessons')">Dersler</a>
+      <a onclick="showPage('test')">Seviye Testi</a>
+    </div>
+    <div>
+      <a onclick="showPage('login')">Giriş Yap</a>
+      <a onclick="showPage('register')">Kayıt Ol</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="page active">
+      <h2>Hedefinize Ulaşın</h2>
+      <p>Kişisel hesabınızla ilerlemenizi takip edin, İngilizce seviyenizi test edin ve seviyenize uygun içeriklerle öğrenin.</p>
+      <button class="btn" onclick="showPage('register')">Hemen Başla</button>
+    </section>
+
+    <section id="login" class="page">
+      <h2>Giriş Yap</h2>
+      <form>
+        <input type="email" placeholder="E-posta" required />
+        <input type="password" placeholder="Şifre" required />
+        <button class="btn" type="submit">Giriş Yap</button>
+      </form>
+    </section>
+
+    <section id="register" class="page">
+      <h2>Kayıt Ol</h2>
+      <form>
+        <input type="text" placeholder="Ad Soyad" required />
+        <input type="email" placeholder="E-posta" required />
+        <input type="password" placeholder="Şifre" required />
+        <button class="btn" type="submit">Kayıt Ol</button>
+      </form>
+    </section>
+
+    <section id="test" class="page">
+      <h2>Seviye Testi</h2>
+      <form id="levelTestForm" onsubmit="evaluateTest(event)">
+        <div id="questionsContainer"></div>
+        <button id="nextBtn" type="button" class="btn" onclick="nextQuestion()">İleri</button>
+        <button id="submitBtn" type="submit" class="btn" style="display:none;">Testi Bitir</button>
+      </form>
+      <p id="result"></p>
+    </section>
+
+    <section id="about" class="page">
+      <h2>Hakkımızda</h2>
+      <p>Bu platform, Türk öğrencilerin İngilizce öğrenmesini kolaylaştırmak için tasarlanmıştır.</p>
+    </section>
+
+    <section id="lessons" class="page">
+      <h2>Dersler</h2>
+      <p>Burada gramer, kelime ve pratik yapabileceğiniz dersler yer alacak.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 İngilizce Öğrenme Platformu. Tüm hakları saklıdır.
+  </footer>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('section.page').forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+      });
+      const page = document.getElementById(id);
+      page.classList.add('active');
+      page.style.display = 'block';
+
+      if (id === 'test') {
+        startTest();
+      }
+    }
+
+    const questions = [
+      { text: '1. What is the correct form: "He _____ to school every day."', options: ['go', 'goes', 'going'], answer: 'goes' },
+      { text: '2. Translate: "Kalem masanın üstünde."', options: ['The pencil is under the table.', 'The pen is on the table.', 'The book is in the bag.'], answer: 'The pen is on the table.' },
+      { text: '3. Choose the correct sentence.', options: ['She don\'t like tea.', 'She doesn\'t likes tea.', 'She doesn\'t like tea.'], answer: 'She doesn\'t like tea.' },
+      { text: '4. What\'s the past form of "go"?', options: ['gone', 'went', 'goed'], answer: 'went' },
+      { text: '5. Which is a synonym of "happy"?', options: ['sad', 'joyful', 'angry'], answer: 'joyful' },
+      { text: '6. What does "although" mean?', options: ['because', 'but', 'if'], answer: 'but' },
+      { text: '7. Find the error: "He playing football now."', options: ['He', 'playing', 'now'], answer: 'playing' },
+      { text: '8. Choose the correct comparative: "fast"', options: ['more fast', 'faster', 'fastest'], answer: 'faster' },
+      { text: '9. What is the plural of "child"?', options: ['childs', 'children', 'childes'], answer: 'children' },
+      { text: '10. What does "rarely" mean?', options: ['always', 'seldom', 'usually'], answer: 'seldom' },
+      { text: '11. Which is a passive sentence?', options: ['He wrote a book.', 'A book was written by him.', 'He writes books.'], answer: 'A book was written by him.' },
+      { text: '12. What\'s the opposite of "expensive"?', options: ['cheap', 'rich', 'poor'], answer: 'cheap' },
+      { text: '13. Choose the correct conditional: "If I were you, I _____"', options: ['will go', 'would go', 'go'], answer: 'would go' },
+      { text: '14. What is the superlative of "good"?', options: ['better', 'the best', 'bestest'], answer: 'the best' },
+      { text: '15. Translate: "Dün sinemaya gittim."', options: ['I go to the cinema yesterday.', 'I went to the cinema yesterday.', 'I gone to the cinema yesterday.'], answer: 'I went to the cinema yesterday.' },
+      { text: '16. Choose the correct phrasal verb: "give up" means...', options: ['start', 'continue', 'quit'], answer: 'quit' },
+      { text: '17. Which is an adjective?', options: ['quickly', 'quick', 'quickness'], answer: 'quick' },
+      { text: '18. Find the correct spelling:', options: ['definately', 'definitely', 'defenetly'], answer: 'definitely' },
+      { text: '19. Choose the correct article: "___ apple a day keeps the doctor away."', options: ['An', 'A', 'The'], answer: 'An' },
+      { text: '20. What is a synonym of "intelligent"?', options: ['dull', 'smart', 'slow'], answer: 'smart' },
+      { text: '21. Which word is a noun?', options: ['running', 'beautiful', 'information'], answer: 'information' },
+      { text: '22. Choose the correct tense: "She _____ for two hours." (present perfect)', options: ['has waited', 'waited', 'waits'], answer: 'has waited' },
+      { text: '23. Choose the correct word: "I\'m interested ___ history."', options: ['on', 'at', 'in'], answer: 'in' },
+      { text: '24. What is the opposite of "lazy"?', options: ['busy', 'active', 'hardworking'], answer: 'hardworking' },
+      { text: '25. Translate: "Bana yardım eder misin?"', options: ['Will you help me?', 'Did you help me?', 'Do you helped me?'], answer: 'Will you help me?' }
+    ];
+
+    let currentQuestionIndex = 0;
+    const answers = [];
+
+    function startTest() {
+      currentQuestionIndex = 0;
+      answers.length = 0;
+      document.getElementById('result').innerText = '';
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('nextBtn').style.display = 'inline-block';
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      const q = questions[currentQuestionIndex];
+      const questionDiv = document.createElement('div');
+      questionDiv.classList.add('question');
+
+      const p = document.createElement('p');
+      p.textContent = q.text;
+      questionDiv.appendChild(p);
+
+      q.options.forEach(opt => {
+        const label = document.createElement('label');
+        label.innerHTML = `<input type="radio" name="answer" value="${opt}" /> ${opt}`;
+        questionDiv.appendChild(label);
+      });
+
+      container.appendChild(questionDiv);
+
+      // Restore previously selected answer if any
+      if (answers[currentQuestionIndex]) {
+        const inputs = document.getElementsByName('answer');
+        inputs.forEach(input => {
+          if (input.value === answers[currentQuestionIndex]) {
+            input.checked = true;
+          }
+        });
+      }
+
+      if (currentQuestionIndex === questions.length - 1) {
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'inline-block';
+      } else {
+        document.getElementById('nextBtn').style.display = 'inline-block';
+        document.getElementById('submitBtn').style.display = 'none';
+      }
+    }
+
+    function nextQuestion() {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) {
+        alert('Lütfen bir seçenek seçin.');
+        return;
+      }
+      answers[currentQuestionIndex] = selected.value;
+
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      }
+    }
+
+    function evaluateTest(event) {
+      event.preventDefault();
+
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) {
+        alert('Lütfen bir seçenek seçin.');
+        return;
+      }
+      answers[currentQuestionIndex] = selected.value;
+
+      let score = 0;
+      questions.forEach((q, i) => {
+        if (answers[i] === q.answer) score++;
+      });
+
+      let level = '';
+      if (score <= 5) level = 'A1';
+      else if (score <= 8) level = 'A2';
+      else if (score <= 11) level = 'B1';
+      else if (score <= 13) level = 'B2';
+      else if (score <= 20) level = 'C1';
+      else level = 'C2';
+
+      document.getElementById('result').innerText = `Puan: ${score}/${questions.length} - Seviyeniz: ${level}`;
+
+      document.getElementById('nextBtn').style.display = 'none';
+      document.getElementById('submitBtn').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
