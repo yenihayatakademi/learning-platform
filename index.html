@@ -52,7 +52,13 @@
         }
         body { margin: 0; font-family: Arial, sans-serif; background-color: var(--beige); color: #333; }
         header { background-color: var(--bordeaux); color: white; padding: 0; text-align: center; }
-        header img.banner { width: 100%; max-height: 300px; object-fit: cover; display: block; margin: 0 auto; }
+        header img.banner {
+    width: 100%;
+    max-height: 150px;  /* smaller height */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
         nav { background-color: #eee; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
         nav a { color: var(--bordeaux); text-decoration: none; margin: 0 10px; font-weight: bold; cursor: pointer; }
         .logout-btn { background-color: var(--bordeaux); color: white; padding: 8px 16px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
