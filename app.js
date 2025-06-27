@@ -80,5 +80,27 @@ function showPage(id) {
             document.getElementById(id).classList.add('active'); 
 }
 window.showPage = showPage;
+window.evaluateTest = function(event) {
+    event.preventDefault();
+
+    const container = document.getElementById('questionsContainer');
+    const result = document.getElementById('result');
+    let score = 0;
+    const total = 5; // Or however many questions you actually use
+
+    const answers = document.querySelectorAll('input[type="radio"]:checked');
+
+    answers.forEach(answer => {
+        if (answer.value === "true") {
+            score++;
+        }
+    });
+
+    let level = "A1";
+    if (score >= 4) level = "B1";
+    if (score === total) level = "B2-C1";
+
+    result.textContent = `Sonuç: ${score}/${total} doğru - Tahmini Seviye: ${level}`;
+};
 
     </script>
