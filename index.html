@@ -64,6 +64,13 @@
     </ul>
 </section>
         <section id="test" class="page">
+            <form id="levelTestForm" onsubmit="evaluateTest(event)">
+    <div id="questionBox"></div>
+    <button class="btn" id="nextButton" type="button" onclick="nextQuestion()">Sonraki</button>
+    <button class="btn" id="submitButton" type="submit" style="display: none;">Testi Bitir</button>
+</form>
+<p id="result" style="margin-top: 20px; font-weight: bold;"></p>
+
             <h2>Seviye Testi</h2>
             <form id="levelTestForm" onsubmit="evaluateTest(event)">
                 <div id="questionsContainer"></div>
