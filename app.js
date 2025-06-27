@@ -1,5 +1,5 @@
 <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
         const firebaseConfig = {
@@ -73,4 +73,12 @@
                 showPage('home');
             }
         });
+function showPage(id) {
+            document.querySelectorAll('section.page').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active'); 
+}
+window.showPage = showPage;
+
     </script>
