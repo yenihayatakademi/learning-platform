@@ -15,25 +15,28 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        window.handleRegister = (e) => {
-            e.preventDefault();
-            const fullName = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
+       window.evaluateTest = function(event) {
+    event.preventDefault();
 
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    return updateProfile(userCredential.user, {
-                        displayName: fullName
-                    });
-                })
-                .then(() => {
-                    alert('Kayıt başarılı!');
-                    showPage('dashboard');
-                    updateDashboard();
-                })
-                .catch(error => alert('Hata: ' + error.message));
-        };
+    const container = document.getElementById('questionsContainer');
+    const result = document.getElementById('result');
+    let score = 0;
+    const total = 5; // Or however many questions you actually use
+
+    const answers = document.querySelectorAll('input[type="radio"]:checked');
+
+    answers.forEach(answer => {
+        if (answer.value === "true") {
+            score++;
+        }
+    });
+
+    let level = "A1";
+    if (score >= 4) level = "B1";
+    if (score === total) level = "B2-C1";
+
+    result.textContent = `Sonuç: ${score}/${total} doğru - Tahmini Seviye: ${level}`;
+};
 
         window.handleLogin = (e) => {
             e.preventDefault();
