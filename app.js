@@ -76,10 +76,23 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         showPage('dashboard');
         updateDashboard();
+
+        // Giriş yaptıysa: Giriş/Kayıt gizle, Hesabım ve Çıkış göster
+        document.querySelector('a[onclick*="login"]').style.display = "none";
+        document.querySelector('a[onclick*="register"]').style.display = "none";
+        document.querySelector('a[onclick*="account"]').style.display = "inline-block";
+        document.querySelector('.logout-btn').style.display = "inline-block";
     } else {
         showPage('home');
+
+        // Çıkış yaptıysa: Giriş/Kayıt göster, Hesabım ve Çıkış gizle
+        document.querySelector('a[onclick*="login"]').style.display = "inline-block";
+        document.querySelector('a[onclick*="register"]').style.display = "inline-block";
+        document.querySelector('a[onclick*="account"]').style.display = "none";
+        document.querySelector('.logout-btn').style.display = "none";
     }
 });
+
 
 // ✅ PAGE SWITCH FUNCTION
 function showPage(id) {
