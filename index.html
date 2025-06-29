@@ -23,18 +23,25 @@
   </div>
 
   <div>
-    <a onclick="showPage('login')" id="login-link">Giriş Yap</a>
-    <a onclick="showPage('register')" id="register-link">Kayıt Ol</a>
+  <a onclick="showPage('login')" id="login-link" style="display: inline-block;">Giriş Yap</a>
+  <a onclick="showPage('register')" id="register-link" style="display: inline-block;">Kayıt Ol</a>
 
-    <div class="dropdown" id="account-dropdown">
-      <a class="dropdown-btn">Hesabım ▾</a>
-      <div class="dropdown-content">
-        <a href="#" onclick="alert('İsim değiştirme yakında!')">İsim Değiştir</a>
-        <a href="#" onclick="alert('Şifre değiştirme yakında!')">Şifre Değiştir</a>
-        <a href="#" onclick="alert('İlerlemeniz yakında gösterilecek!')">İlerleme</a>
-        <a href="#" onclick="showPage('lessons')">Derslerim</a>
-      </div>
+  <div class="dropdown" id="account-dropdown" style="display: none;">
+    <a class="dropdown-btn">Hesabım ▾</a>
+    <div class="dropdown-content">
+      <a href="#" onclick="alert('Profil bilgilerinizi güncelleyebileceksiniz.')">Profil Bilgilerim</a>
+      <a href="#" onclick="alert('Şifre değiştirme özelliği yakında!')">Şifre Değiştir</a>
+      <a href="#" onclick="alert('İlerlemenizi yakında görebileceksiniz.')">İlerlemem</a>
+      <a href="#" onclick="showPage('lessons')">Derslerim</a>
+      <a href="#" onclick="alert('Test sonuçları özelliği yakında!')">Test Sonuçlarım</a>
+      <a href="#" onclick="alert('Üyelik bilgisi yakında gösterilecek.')">Üyelik Bilgisi</a>
+      <a href="#" onclick="alert('Hesap silme özelliği yakında!')">Hesabımı Sil</a>
     </div>
+  </div>
+
+  <button class="logout-btn" onclick="handleLogout()" style="display: none;">Çıkış Yap</button>
+</div>
+
 
     <button class="logout-btn" onclick="handleLogout()">Çıkış Yap</button>
   </div>
