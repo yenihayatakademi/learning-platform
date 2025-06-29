@@ -22,3 +22,41 @@
         .question label { display: block; margin: 5px 0; }
         section.page { display: none; }
         section.page.active { display: block; }
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  color: var(--bordeaux);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 180px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f5f5dc;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
