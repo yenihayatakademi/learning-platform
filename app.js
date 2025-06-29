@@ -111,6 +111,35 @@ function showPage(id) {
 }
 window.showPage = showPage;
 
+// PROFİL SAYFASI GÖSTERME
+window.showProfileData = function () {
+    const user = auth.currentUser;
+    if (user) {
+        const [firstName, ...rest] = user.displayName ? user.displayName.split(" ") : ["Kullanıcı"];
+        const lastName = rest.join(" ");
+
+        document.getElementById('profile-firstname').value = firstName || "";
+        document.getElementById('profile-lastname').value = lastName || "";
+        document.getElementById('profile-email').value = user.email;
+    }
+};
+
+// PROFİL GÜNCELLEME
+window.handleProfileUpdate = function (e) {
+    e.preventDefault();
+    const firstName = document.getElementById('profile-firstname').value.trim();
+    const lastName = document.getElementById('profile-lastname').value.trim();
+    const fullName = `${firstName} ${lastName}`;
+
+    updateProfile(auth.currentUser, { displayName: fullName })
+        .then(() => {
+            alert("Profil güncellendi!");
+            updateDashboard();
+        })
+        .catch((error) => alert("Hata: " + error.message));
+};
+
+
 // ✅ LEVEL TEST FUNCTION
 window.evaluateTest = function (event) {
     event.preventDefault();
