@@ -22,6 +22,11 @@
         .question label { display: block; margin: 5px 0; }
         section.page { display: none; }
         section.page.active { display: block; }
+#account-dropdown,
+.logout-btn {
+  display: none;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
