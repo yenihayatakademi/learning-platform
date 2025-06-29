@@ -107,11 +107,7 @@ function showPage(id) {
     document.querySelectorAll('section.page').forEach(section => {
         section.classList.remove('active');
     });
-    document.getElementById(id).classList.add('active');
-}
-window.showPage = showPage;
-
-// PROFİL SAYFASI GÖSTERME
+    // PROFİL SAYFASI GÖSTERME
 window.showProfileData = function () {
     const user = auth.currentUser;
     if (user) {
@@ -123,6 +119,11 @@ window.showProfileData = function () {
         document.getElementById('profile-email').value = user.email;
     }
 };
+    document.getElementById(id).classList.add('active');
+}
+window.showPage = showPage;
+
+
 
 // PROFİL GÜNCELLEME
 window.handleProfileUpdate = function (e) {
