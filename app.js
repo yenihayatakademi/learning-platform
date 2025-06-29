@@ -73,27 +73,27 @@ function updateDashboard() {
 
 // ✅ HANDLE LOGIN STATE
 onAuthStateChanged(auth, (user) => {
-    const loginLink = document.getElementById("login-link");
-    const registerLink = document.getElementById("register-link");
-    const accountDropdown = document.getElementById("account-dropdown");
-    const logoutBtn = document.querySelector(".logout-btn");
+  const loginLink = document.getElementById("login-link");
+  const registerLink = document.getElementById("register-link");
+  const accountDropdown = document.getElementById("account-dropdown");
+  const logoutBtn = document.querySelector(".logout-btn");
 
-    if (user) {
-        showPage("dashboard");
-        updateDashboard();
+  if (user) {
+    showPage("dashboard");
+    updateDashboard();
 
-        loginLink.style.display = "none";
-        registerLink.style.display = "none";
-        accountDropdown.style.display = "inline-block";
-        logoutBtn.style.display = "inline-block";
-    } else {
-        showPage("home");
+    loginLink.style.display = "none";
+    registerLink.style.display = "none";
+    accountDropdown.style.display = "inline-block";
+    logoutBtn.style.display = "inline-block";
+  } else {
+    showPage("home");
 
-        loginLink.style.display = "inline-block";
-        registerLink.style.display = "inline-block";
-        accountDropdown.style.display = "none";
-        logoutBtn.style.display = "none";
-    }
+    loginLink.style.display = "inline-block";
+    registerLink.style.display = "inline-block";
+    accountDropdown.style.display = "none";
+    logoutBtn.style.display = "none";
+  }
 });
 
 
