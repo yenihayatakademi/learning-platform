@@ -14,7 +14,7 @@
     <header>
         <img src="banner.png" alt="Yeni Hayat Akademi Banner" class="banner">
     </header>
-   <nav>
+ <nav>
   <div>
     <a onclick="showPage('home')">Ana Sayfa</a>
     <a onclick="showPage('about')">Hakkımızda</a>
@@ -23,10 +23,10 @@
   </div>
 
   <div>
-    <a onclick="showPage('login')" id="login-link" style="display: inline-block;">Giriş Yap</a>
-    <a onclick="showPage('register')" id="register-link" style="display: inline-block;">Kayıt Ol</a>
+    <a onclick="showPage('login')" id="login-link">Giriş Yap</a>
+    <a onclick="showPage('register')" id="register-link">Kayıt Ol</a>
 
-    <div class="dropdown" id="account-dropdown" style="display: none;">
+    <div class="dropdown" id="account-dropdown">
       <a class="dropdown-btn">Hesabım ▾</a>
       <div class="dropdown-content">
         <a href="#" onclick="alert('İsim değiştirme yakında!')">İsim Değiştir</a>
@@ -36,9 +36,10 @@
       </div>
     </div>
 
-    <button class="logout-btn" onclick="handleLogout()" style="display: none;">Çıkış Yap</button>
+    <button class="logout-btn" onclick="handleLogout()">Çıkış Yap</button>
   </div>
 </nav>
+
 
 
     <main>
