@@ -15,11 +15,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // ✅ REGISTER FUNCTION
-window.handleRegister = function (e) {
+window.handleRegister = (e) => {
     e.preventDefault();
-    const fullName = document.getElementById('register-name').value;
-    const email = document.getElementById('register-email').value;
+    const firstName = document.getElementById('register-firstname').value.trim();
+    const lastName = document.getElementById('register-lastname').value.trim();
+    const email = document.getElementById('register-email').value.trim();
     const password = document.getElementById('register-password').value;
+
+    const fullName = `${firstName} ${lastName}`;
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -28,14 +31,16 @@ window.handleRegister = function (e) {
             });
         })
         .then(() => {
-            alert("Kayıt başarılı!");
-            showPage("dashboard");
-            updateDashboard();
+            return auth.currentUser.reload(); // Ad soyadı hemen gelsin
         })
-        .catch(error => {
-            alert("Hata: " + error.message);
-        });
+        .then(() => {
+            alert('Kayıt başarılı!');
+            updateDashboard();
+            showPage('dashboard');
+        })
+        .catch(error => alert('Hata: ' + error.message));
 };
+
 
 // ✅ LOGIN FUNCTION
 window.handleLogin = function (e) {
