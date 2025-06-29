@@ -15,19 +15,20 @@
         <img src="banner.png" alt="Yeni Hayat Akademi Banner" class="banner">
     </header>
     <nav>
-        <div>
-            <a onclick="showPage('home')">Ana Sayfa</a>
-            <a onclick="showPage('about')">Hakkımızda</a>
-            <a onclick="showPage('lessons')">Dersler</a>
-            <a onclick="showPage('test')">Seviye Testi</a>
-        </div>
-       <div>
-    <a onclick="showPage('login')" style="display: inline-block;">Giriş Yap</a>
-    <a onclick="showPage('register')" style="display: inline-block;">Kayıt Ol</a>
-    <a onclick="showPage('account')" style="display: none;">Hesabım</a>
+  <div>
+    <a onclick="showPage('home')">Ana Sayfa</a>
+    <a onclick="showPage('about')">Hakkımızda</a>
+    <a onclick="showPage('lessons')">Dersler</a>
+    <a onclick="showPage('test')">Seviye Testi</a>
+  </div>
+  <div>
+    <a onclick="showPage('login')" id="login-link" style="display: inline-block;">Giriş Yap</a>
+    <a onclick="showPage('register')" id="register-link" style="display: inline-block;">Kayıt Ol</a>
+    <a onclick="showPage('account')" id="account-link" style="display: none;">Hesabım</a>
     <button class="logout-btn" onclick="handleLogout()" style="display: none;">Çıkış Yap</button>
-</div>
-    </nav>
+  </div>
+</nav>
+
     <main>
         <section id="home" class="page active">
             <h2>Hedefinize Ulaşın</h2>
