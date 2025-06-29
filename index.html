@@ -21,10 +21,22 @@
     <a onclick="showPage('lessons')">Dersler</a>
     <a onclick="showPage('test')">Seviye Testi</a>
   </div>
-  <div>
-    <a onclick="showPage('login')" id="login-link" style="display: inline-block;">Giriş Yap</a>
-    <a onclick="showPage('register')" id="register-link" style="display: inline-block;">Kayıt Ol</a>
-    <a onclick="showPage('account')" id="account-link" style="display: none;">Hesabım</a>
+ <div>
+  <a onclick="showPage('login')" id="login-link" style="display: inline-block;">Giriş Yap</a>
+  <a onclick="showPage('register')" id="register-link" style="display: inline-block;">Kayıt Ol</a>
+
+  <div class="dropdown" id="account-dropdown" style="display: none;">
+    <a class="dropdown-btn">Hesabım ▾</a>
+    <div class="dropdown-content">
+      <a href="#" onclick="alert('İsim değiştirme yakında!')">İsim Değiştir</a>
+      <a href="#" onclick="alert('Şifre değiştirme yakında!')">Şifre Değiştir</a>
+      <a href="#" onclick="alert('İlerlemeniz yakında gösterilecek!')">İlerleme</a>
+      <a href="#" onclick="showPage('lessons')">Derslerim</a>
+    </div>
+  </div>
+
+  <button class="logout-btn" onclick="handleLogout()" style="display: none;">Çıkış Yap</button>
+</div>
     <button class="logout-btn" onclick="handleLogout()" style="display: none;">Çıkış Yap</button>
   </div>
 </nav>
