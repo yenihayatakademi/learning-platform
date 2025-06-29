@@ -73,23 +73,26 @@ function updateDashboard() {
 
 // ✅ HANDLE LOGIN STATE
 onAuthStateChanged(auth, (user) => {
+    const loginLink = document.getElementById("login-link");
+    const registerLink = document.getElementById("register-link");
+    const accountDropdown = document.getElementById("account-dropdown");
+    const logoutBtn = document.querySelector(".logout-btn");
+
     if (user) {
-        showPage('dashboard');
+        showPage("dashboard");
         updateDashboard();
 
-        // Giriş yaptıysa: Giriş/Kayıt gizle, Hesabım ve Çıkış göster
-        document.querySelector('a[onclick*="login"]').style.display = "none";
-        document.querySelector('a[onclick*="register"]').style.display = "none";
-        document.querySelector('a[onclick*="account"]').style.display = "inline-block";
-        document.querySelector('.logout-btn').style.display = "inline-block";
+        loginLink.style.display = "none";
+        registerLink.style.display = "none";
+        accountDropdown.style.display = "inline-block";
+        logoutBtn.style.display = "inline-block";
     } else {
-        showPage('home');
+        showPage("home");
 
-        // Çıkış yaptıysa: Giriş/Kayıt göster, Hesabım ve Çıkış gizle
-        document.querySelector('a[onclick*="login"]').style.display = "inline-block";
-        document.querySelector('a[onclick*="register"]').style.display = "inline-block";
-        document.querySelector('a[onclick*="account"]').style.display = "none";
-        document.querySelector('.logout-btn').style.display = "none";
+        loginLink.style.display = "inline-block";
+        registerLink.style.display = "inline-block";
+        accountDropdown.style.display = "none";
+        logoutBtn.style.display = "none";
     }
 });
 
