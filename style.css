@@ -64,4 +64,22 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.profile-info {
+  max-width: 400px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-info label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-info input {
+  padding: 8px;
+  font-size: 1rem;
+}
+
 
