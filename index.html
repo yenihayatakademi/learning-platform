@@ -72,25 +72,22 @@
       <p>Buradan ilerlemeni takip edebilir, derslere ulaşabilirsin.</p>
     </section>
 
-   <section id="profile" class="page">
+  <section id="profile" class="page">
   <h2>Profil Bilgilerim</h2>
-  <form id="profile-form" onsubmit="handleProfileUpdate(event)">
-    <div class="profile-info">
-      <label for="profile-firstname">Ad:</label>
-      <input type="text" id="profile-firstname" disabled required>
+  <form id="profile-form" onsubmit="handleProfileUpdate(event)" style="max-width: 500px; text-align: left; margin: auto;">
+    <label>Ad:</label>
+    <input type="text" id="profile-firstname" placeholder="Ad" disabled required><br>
 
-      <label for="profile-lastname">Soyad:</label>
-      <input type="text" id="profile-lastname" disabled required>
+    <label>Soyad:</label>
+    <input type="text" id="profile-lastname" placeholder="Soyad" disabled required><br>
 
-      <label for="profile-email">E-posta:</label>
-      <input type="email" id="profile-email" disabled>
-    </div>
+    <label>E-posta (değiştirilemez):</label>
+    <input type="email" id="profile-email" disabled><br><br>
 
-    <button class="btn" type="button" onclick="enableProfileEdit()">Bilgileri Güncelle</button>
-    <button class="btn" id="saveProfileBtn" type="submit" style="display: none;">Kaydet</button>
+    <button class="btn" type="button" id="edit-btn" onclick="enableProfileEdit()">Düzenle</button>
+    <button class="btn" type="submit" id="save-btn" style="display: none;">Kaydet</button>
   </form>
 </section>
-
 
     <section id="test" class="page">
       <h2>Seviye Testi</h2>
