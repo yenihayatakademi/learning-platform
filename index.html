@@ -85,6 +85,22 @@
         <li><a onclick="alert('İlerleme sayfası yakında eklenecek.')">İlerleme</a></li>
     </ul>
 </section>
+        <section id="profile" class="page">
+  <h2>Profil Bilgilerim</h2>
+  <form id="profile-form" onsubmit="handleProfileUpdate(event)">
+    <label>Ad:</label>
+    <input type="text" id="profile-firstname" placeholder="Ad" required><br>
+
+    <label>Soyad:</label>
+    <input type="text" id="profile-lastname" placeholder="Soyad" required><br>
+
+    <label>E-posta (değiştirilemez):</label>
+    <input type="email" id="profile-email" disabled><br>
+
+    <button class="btn" type="submit">Güncelle</button>
+  </form>
+</section>
+
         <section id="test" class="page">
             <form id="levelTestForm" onsubmit="evaluateTest(event)">
     <div id="questionBox"></div>
