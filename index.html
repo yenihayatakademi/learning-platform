@@ -72,18 +72,25 @@
       <p>Buradan ilerlemeni takip edebilir, derslere ulaşabilirsin.</p>
     </section>
 
-    <section id="profile" class="page">
-      <h2>Profil Bilgilerim</h2>
-      <form id="profile-form" onsubmit="handleProfileUpdate(event)">
-        <label>Ad:</label>
-        <input type="text" id="profile-firstname" placeholder="Ad" required /><br />
-        <label>Soyad:</label>
-        <input type="text" id="profile-lastname" placeholder="Soyad" required /><br />
-        <label>E-posta (değiştirilemez):</label>
-        <input type="email" id="profile-email" disabled /><br />
-        <button class="btn" type="submit">Güncelle</button>
-      </form>
-    </section>
+   <section id="profile" class="page">
+  <h2>Profil Bilgilerim</h2>
+  <form id="profile-form" onsubmit="handleProfileUpdate(event)">
+    <div class="profile-info">
+      <label for="profile-firstname">Ad:</label>
+      <input type="text" id="profile-firstname" disabled required>
+
+      <label for="profile-lastname">Soyad:</label>
+      <input type="text" id="profile-lastname" disabled required>
+
+      <label for="profile-email">E-posta:</label>
+      <input type="email" id="profile-email" disabled>
+    </div>
+
+    <button class="btn" type="button" onclick="enableProfileEdit()">Bilgileri Güncelle</button>
+    <button class="btn" id="saveProfileBtn" type="submit" style="display: none;">Kaydet</button>
+  </form>
+</section>
+
 
     <section id="test" class="page">
       <h2>Seviye Testi</h2>
