@@ -246,3 +246,12 @@ window.evaluateTest = function (e) {
 
 // show first question immediately
 showQuestion();
+
+function showPage(id) {
+    document.querySelectorAll('section.page').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+}
+
+
